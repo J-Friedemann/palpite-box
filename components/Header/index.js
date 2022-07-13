@@ -1,11 +1,10 @@
 import React from 'react'
-import styles from './styles.module.css'
 import Link  from 'next/link'
 
 const Header = () => {
   return (
     <React.Fragment>
-      <div className={styles.wrapper}>
+      <div className='bg-gray-200 p-4 shadow-md'>
           <div  className='container mx-auto'>
           <Link href='/'>
             <a><img className='mx-auto' src='/logo_palpitebox.png' alt='PalpiteBox'/></a>

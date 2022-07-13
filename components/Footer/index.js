@@ -2,7 +2,7 @@ import React from "react"
 
 const Footer = () => {
   return (
-    <div className="bg-gray-700">
+    <div className="bg-gray-700"> 
       <div className="container mx-auto p-4 text-center font-bold text-white">
         Projeto desenvolvido por: Jonatha Friedemann
         <div className="mt-2">
