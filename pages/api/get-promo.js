@@ -1,15 +1,12 @@
 import { GoogleSpreadsheet } from 'google-spreadsheet'
+import { fromBase64 } from '../../utils/base64'
 
-const doc = new GoogleSpreadsheet (process.env.SHEET_DOC_ID)
+const doc = new GoogleSpreadsheet(process.env.SHEET_DOC_ID)
 
-const fromBase64 = value => {
-  const buff = Buffer.from(value, 'base64');
-  return buff.toString('ascii');
-}
 
-export default async(req, res) => {
 
-  try{
+export default async (req, res) => {
+  try {
     await doc.useServiceAccountAuth({
       client_email: process.env.SHEET_CLIENT_EMAIL,
       private_key: fromBase64(process.env.SHEET_PRIVATE_KEY)
@@ -23,14 +20,17 @@ export default async(req, res) => {
     const textoCell = sheet.getCell(1, 1)
 
     res.end(JSON.stringify({
-      monstrarCupom: mostrarPromocaoCell.value === 'VERDADEIRO',
-      menssagem: textoCell.value
+      showCoupon: mostrarPromocaoCell.value === 'VERDADEIRO',
+      message: textoCell.value
     }))
-    
-  } catch (err){
+
+  } catch (err) {
     res.end(JSON.stringify({
-      monstrarCupom: false,
-      menssagem: ''
+      showCoupon: false,
+      message: ''
     }))
   }
+
+
+
 }
